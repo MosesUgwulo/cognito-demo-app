@@ -1,7 +1,20 @@
 {
   "version": "32.0.0",
   "files": {
-    "dd57d0e84cb18e11a4733d7a53ae4a4e1b3d757e6dbea39bfcc949e1531f8cba": {
+    "bda58344c4be036bfc04193f99485940f45d8a5c33e816ab712b46e69b9f2ac4": {
+      "source": {
+        "path": "asset.bda58344c4be036bfc04193f99485940f45d8a5c33e816ab712b46e69b9f2ac4",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "bda58344c4be036bfc04193f99485940f45d8a5c33e816ab712b46e69b9f2ac4.zip",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    },
+    "889ae89af6062e8f9a1830315259c5093d39eedcc2764125e0f47ff9f3949e2e": {
       "source": {
         "path": "AwsServerlessAuthStack.template.json",
         "packaging": "file"
@@ -9,7 +22,7 @@
       "destinations": {
         "current_account-current_region": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
-          "objectKey": "dd57d0e84cb18e11a4733d7a53ae4a4e1b3d757e6dbea39bfcc949e1531f8cba.json",
+          "objectKey": "889ae89af6062e8f9a1830315259c5093d39eedcc2764125e0f47ff9f3949e2e.json",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
         }
       }

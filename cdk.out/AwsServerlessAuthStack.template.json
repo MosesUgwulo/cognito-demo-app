@@ -88,7 +88,7 @@
     "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Resource"
    }
   },
-  "AuthServiceApiDeployment2EA5C028da36231678214e85c5ef64ba0b3ca3c6": {
+  "AuthServiceApiDeployment2EA5C0289c74746854412ef5d6073772f29a9920": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "Authentication Service RestApi",
@@ -99,6 +99,9 @@
    "DependsOn": [
     "AuthServiceApiauthOPTIONS8DFC6C71",
     "AuthServiceApiauthF0516E48",
+    "AuthServiceApiauthsignupOPTIONS8DCE3F66",
+    "AuthServiceApiauthsignupPOST1848032B",
+    "AuthServiceApiauthsignup28B7741A",
     "AuthServiceApiOPTIONS9323A1DA"
    ],
    "Metadata": {
@@ -109,7 +112,7 @@
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "AuthServiceApiDeployment2EA5C028da36231678214e85c5ef64ba0b3ca3c6"
+     "Ref": "AuthServiceApiDeployment2EA5C0289c74746854412ef5d6073772f29a9920"
     },
     "RestApiId": {
      "Ref": "AuthServiceApi8CFB7A21"
@@ -227,10 +230,276 @@
     "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/OPTIONS/Resource"
    }
   },
+  "AuthServiceApiauthsignup28B7741A": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AuthServiceApiauthF0516E48"
+    },
+    "PathPart": "signup",
+    "RestApiId": {
+     "Ref": "AuthServiceApi8CFB7A21"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/Resource"
+   }
+  },
+  "AuthServiceApiauthsignupOPTIONS8DCE3F66": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AuthServiceApiauthsignup28B7741A"
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi8CFB7A21"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/OPTIONS/Resource"
+   }
+  },
+  "AuthServiceApiauthsignupPOSTApiPermissionAwsServerlessAuthStackAuthServiceApi1E655247POSTauthsignup7EAA44C5": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "SignupFn336C4F73",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AuthServiceApi8CFB7A21"
+       },
+       "/",
+       {
+        "Ref": "AuthServiceApiDeploymentStageprodAE29D77D"
+       },
+       "/POST/auth/signup"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/POST/ApiPermission.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.signup"
+   }
+  },
+  "AuthServiceApiauthsignupPOSTApiPermissionTestAwsServerlessAuthStackAuthServiceApi1E655247POSTauthsignup9C336983": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "SignupFn336C4F73",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AuthServiceApi8CFB7A21"
+       },
+       "/test-invoke-stage/POST/auth/signup"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/POST/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.signup"
+   }
+  },
+  "AuthServiceApiauthsignupPOST1848032B": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "SignupFn336C4F73",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AuthServiceApiauthsignup28B7741A"
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi8CFB7A21"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/POST/Resource"
+   }
+  },
+  "SignupFnServiceRoleB51FBFF1": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsServerlessAuthStack/SignupFn/ServiceRole/Resource"
+   }
+  },
+  "SignupFn336C4F73": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "arm64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "bda58344c4be036bfc04193f99485940f45d8a5c33e816ab712b46e69b9f2ac4.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "USER_POOL_ID": {
+       "Ref": "UserPool6BA7E5F2"
+      },
+      "CLIENT_ID": {
+       "Ref": "UserPoolAppClientDD0407EC"
+      },
+      "REGION": {
+       "Ref": "AWS::Region"
+      },
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 128,
+    "Role": {
+     "Fn::GetAtt": [
+      "SignupFnServiceRoleB51FBFF1",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs16.x",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "SignupFnServiceRoleB51FBFF1"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsServerlessAuthStack/SignupFn/Resource",
+    "aws:asset:path": "asset.bda58344c4be036bfc04193f99485940f45d8a5c33e816ab712b46e69b9f2ac4",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02QTw+CMAzFP4v3McUTV8Wr0WA8mwkVy5+VsE5CyL67TMBw6q/vvTZN9zKK5G6jOhOkWRlU+JTDjVVailF6DCnlGpnkcDfQXokqEb/0nxeIKwTNa2tSnFAN5oqhU70cEjB8aNDHFjxBU1Ffz8OrbjwhB69NMObJtikclQFxBn5T5s2ZFnfe/GPnfHex3Fhe655j0hkyknZCUwayMNtPGMnQP6IwiEFrNWMNMpnqF2q8DmYkAQAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02RzU7DMBCEn4W7u1C45NoGcQOqIs6R6yxhE8eOsmuqKsq7Y+cHctrPM+PVWH6ELIOHO33lnSmbnaULDB+iTaOiVAzGV47Ew/DJ2J+8tyr/cn+8Qm4JnWytWRmV7qjSgld9g+GMLIeOUmzFZ+ysv7XL5c0pVqgwaTPEvA+9waNmVK8o375M5kKru2yeeFRWt5dSwxDFE/YtMZN3KfISnJHIa6RwvsSa4W0aq6tIt7Gzt/PaOEfFT4VmRmE4pBHPcAymQUm9xpR7D9IF+W805dIbyFXbeolz70qai6QGUPP9zz6DffqPmol2fXBCLcJ5nr82WG2oqwEAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "AwsServerlessAuthStack/CDKMetadata/Default"

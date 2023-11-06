@@ -17,7 +17,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/dd57d0e84cb18e11a4733d7a53ae4a4e1b3d757e6dbea39bfcc949e1531f8cba.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/889ae89af6062e8f9a1830315259c5093d39eedcc2764125e0f47ff9f3949e2e.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -54,7 +54,7 @@
         "/AwsServerlessAuthStack/AuthServiceApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AuthServiceApiDeployment2EA5C028da36231678214e85c5ef64ba0b3ca3c6"
+            "data": "AuthServiceApiDeployment2EA5C0289c74746854412ef5d6073772f29a9920"
           }
         ],
         "/AwsServerlessAuthStack/AuthServiceApi/DeploymentStage.prod/Resource": [
@@ -85,6 +85,48 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "AuthServiceApiauthOPTIONS8DFC6C71"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsignup28B7741A"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsignupOPTIONS8DCE3F66"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/POST/ApiPermission.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.signup": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsignupPOSTApiPermissionAwsServerlessAuthStackAuthServiceApi1E655247POSTauthsignup7EAA44C5"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/POST/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.signup": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsignupPOSTApiPermissionTestAwsServerlessAuthStackAuthServiceApi1E655247POSTauthsignup9C336983"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsignupPOST1848032B"
+          }
+        ],
+        "/AwsServerlessAuthStack/SignupFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SignupFnServiceRoleB51FBFF1"
+          }
+        ],
+        "/AwsServerlessAuthStack/SignupFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SignupFn336C4F73"
           }
         ],
         "/AwsServerlessAuthStack/CDKMetadata/Default": [
