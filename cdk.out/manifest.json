@@ -17,7 +17,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/78c49724e9c8c931fb25d1bd03381d05ea6b7c371bb494823bce8839b4cb5c77.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/aafd5a9dae7596d6351fa10e4ac069f5259fc5525b7b14d4a01526f1daf1cdbe.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -54,7 +54,7 @@
         "/AwsServerlessAuthStack/AuthServiceApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AuthServiceApiDeployment2EA5C0284d167b651b1a00a46da41e28d13f5631"
+            "data": "AuthServiceApiDeployment2EA5C0287cd9e64170020e3bf58a1cb2d1d42cc6"
           }
         ],
         "/AwsServerlessAuthStack/AuthServiceApi/DeploymentStage.prod/Resource": [
@@ -147,6 +147,66 @@
             "data": "AuthServiceApiauthconfirmsignupPOST5F235FEF"
           }
         ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signout/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsignout137525BA"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signout/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsignoutOPTIONSB792AD47"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signout/GET/ApiPermission.AwsServerlessAuthStackAuthServiceApi1E655247.GET..auth.signout": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsignoutGETApiPermissionAwsServerlessAuthStackAuthServiceApi1E655247GETauthsignout935DF7E3"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signout/GET/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApi1E655247.GET..auth.signout": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsignoutGETApiPermissionTestAwsServerlessAuthStackAuthServiceApi1E655247GETauthsignoutBD8BB1B9"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signout/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsignoutGET2B2655CD"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signin/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsignin17EA6462"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signin/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsigninOPTIONS2A0D0BC4"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signin/POST/ApiPermission.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.signin": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsigninPOSTApiPermissionAwsServerlessAuthStackAuthServiceApi1E655247POSTauthsignin532A1B11"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signin/POST/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.signin": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsigninPOSTApiPermissionTestAwsServerlessAuthStackAuthServiceApi1E655247POSTauthsigninC0A0FC36"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/signin/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthsigninPOST7E3E38A0"
+          }
+        ],
         "/AwsServerlessAuthStack/SignupFn/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -169,6 +229,168 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "ConfirmFnA2DFB0E0"
+          }
+        ],
+        "/AwsServerlessAuthStack/SignoutFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SignoutFnServiceRole3AF7B732"
+          }
+        ],
+        "/AwsServerlessAuthStack/SignoutFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SignoutFnEA9B2CE3"
+          }
+        ],
+        "/AwsServerlessAuthStack/SigninFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SigninFnServiceRole084C9885"
+          }
+        ],
+        "/AwsServerlessAuthStack/SigninFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SigninFnBC3BA31F"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApiE7BADA01"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApiDeployment7658F313f3bbf1263d818c3073afa28dbcb1b48d"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApiDeploymentStageprod4B09D08C"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApiEndpoint979256A8"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Default/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApiOPTIONS26B60D0C"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Default/protected/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApiprotected326364E3"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Default/protected/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApiprotectedOPTIONSBBC5239D"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Default/protected/GET/ApiPermission.AwsServerlessAuthStackAppApi148C24F5.GET..protected": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApiprotectedGETApiPermissionAwsServerlessAuthStackAppApi148C24F5GETprotectedEDC2E85B"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Default/protected/GET/ApiPermission.Test.AwsServerlessAuthStackAppApi148C24F5.GET..protected": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApiprotectedGETApiPermissionTestAwsServerlessAuthStackAppApi148C24F5GETprotected8C485F67"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Default/protected/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApiprotectedGET82227590"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Default/public/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApipublicED08BA99"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Default/public/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApipublicOPTIONSA946398B"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Default/public/GET/ApiPermission.AwsServerlessAuthStackAppApi148C24F5.GET..public": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApipublicGETApiPermissionAwsServerlessAuthStackAppApi148C24F5GETpublicC8BBB901"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Default/public/GET/ApiPermission.Test.AwsServerlessAuthStackAppApi148C24F5.GET..public": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApipublicGETApiPermissionTestAwsServerlessAuthStackAppApi148C24F5GETpublic04789B46"
+          }
+        ],
+        "/AwsServerlessAuthStack/AppApi/Default/public/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppApipublicGET4A8586C5"
+          }
+        ],
+        "/AwsServerlessAuthStack/ProtectedFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProtectedFnServiceRole25BFD54C"
+          }
+        ],
+        "/AwsServerlessAuthStack/ProtectedFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProtectedFn08517F55"
+          }
+        ],
+        "/AwsServerlessAuthStack/PublicFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PublicFnServiceRoleF3FDF518"
+          }
+        ],
+        "/AwsServerlessAuthStack/PublicFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PublicFn6A30F5E5"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthorizerFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthorizerFnServiceRole91AE9242"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthorizerFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthorizerFn97B9AA7C"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthorizerFn/AwsServerlessAuthStackRequestAuthorizerB75206C1:Permissions": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthorizerFnAwsServerlessAuthStackRequestAuthorizerB75206C1PermissionsC8FB5DBF"
+          }
+        ],
+        "/AwsServerlessAuthStack/RequestAuthorizer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RequestAuthorizer7473A0B3"
           }
         ],
         "/AwsServerlessAuthStack/CDKMetadata/Default": [
