@@ -1,0 +1,19 @@
+{
+  "version": "32.0.0",
+  "files": {
+    "556b47086c803350f7574eb4da1a53adbdc93cf48ed33132a1af92d730bb0210": {
+      "source": {
+        "path": "AwsServerlessAuthStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "556b47086c803350f7574eb4da1a53adbdc93cf48ed33132a1af92d730bb0210.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

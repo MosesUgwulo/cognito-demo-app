@@ -1,0 +1,2425 @@
+{
+ "Resources": {
+  "UserPool6BA7E5F2": {
+   "Type": "AWS::Cognito::UserPool",
+   "Properties": {
+    "AccountRecoverySetting": {
+     "RecoveryMechanisms": [
+      {
+       "Name": "verified_phone_number",
+       "Priority": 1
+      },
+      {
+       "Name": "verified_email",
+       "Priority": 2
+      }
+     ]
+    },
+    "AdminCreateUserConfig": {
+     "AllowAdminCreateUserOnly": false
+    },
+    "AliasAttributes": [
+     "email"
+    ],
+    "AutoVerifiedAttributes": [
+     "email"
+    ],
+    "EmailVerificationMessage": "The verification code to your new account is {####}",
+    "EmailVerificationSubject": "Verify your new account",
+    "SmsVerificationMessage": "The verification code to your new account is {####}",
+    "VerificationMessageTemplate": {
+     "DefaultEmailOption": "CONFIRM_WITH_CODE",
+     "EmailMessage": "The verification code to your new account is {####}",
+     "EmailSubject": "Verify your new account",
+     "SmsMessage": "The verification code to your new account is {####}"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/UserPool/Resource"
+   }
+  },
+  "UserPoolAppClientDD0407EC": {
+   "Type": "AWS::Cognito::UserPoolClient",
+   "Properties": {
+    "AllowedOAuthFlows": [
+     "implicit",
+     "code"
+    ],
+    "AllowedOAuthFlowsUserPoolClient": true,
+    "AllowedOAuthScopes": [
+     "profile",
+     "phone",
+     "email",
+     "openid",
+     "aws.cognito.signin.user.admin"
+    ],
+    "CallbackURLs": [
+     "https://example.com"
+    ],
+    "ExplicitAuthFlows": [
+     "ALLOW_USER_PASSWORD_AUTH",
+     "ALLOW_REFRESH_TOKEN_AUTH"
+    ],
+    "SupportedIdentityProviders": [
+     "COGNITO"
+    ],
+    "UserPoolId": {
+     "Ref": "UserPool6BA7E5F2"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/UserPool/AppClient/Resource"
+   }
+  },
+  "AuthServiceApi6F145F59": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Description": "Authentication Service RestApi",
+    "EndpointConfiguration": {
+     "Types": [
+      "REGIONAL"
+     ]
+    },
+    "Name": "AuthServiceApi"
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Resource"
+   }
+  },
+  "AuthServiceApiDeploymentE6C7B14Be98138ed7bb03a3013653f5ae5c74dff": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "Description": "Authentication Service RestApi",
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "DependsOn": [
+    "AuthServiceApiauthconfirmsignupOPTIONSF4E3A721",
+    "AuthServiceApiauthconfirmsignupPOSTBF26C81A",
+    "AuthServiceApiauthconfirmsignup53051378",
+    "AuthServiceApiauthOPTIONSB7D5DB23",
+    "AuthServiceApiauth4F918273",
+    "AuthServiceApiauthsigninOPTIONS4CCAC799",
+    "AuthServiceApiauthsigninPOSTC78F9AEC",
+    "AuthServiceApiauthsigninAC698811",
+    "AuthServiceApiauthsignoutGETC75DA49A",
+    "AuthServiceApiauthsignoutOPTIONSCB5E990F",
+    "AuthServiceApiauthsignout9DEA4640",
+    "AuthServiceApiauthsignupOPTIONSB3E2B959",
+    "AuthServiceApiauthsignupPOST07EFAAC5",
+    "AuthServiceApiauthsignup2FA1E77F",
+    "AuthServiceApiOPTIONSF87E2E8C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Deployment/Resource"
+   }
+  },
+  "AuthServiceApiDeploymentStageprodEA127565": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "DeploymentId": {
+     "Ref": "AuthServiceApiDeploymentE6C7B14Be98138ed7bb03a3013653f5ae5c74dff"
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    },
+    "StageName": "prod"
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/DeploymentStage.prod/Resource"
+   }
+  },
+  "AuthServiceApiOPTIONSF87E2E8C": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Fn::GetAtt": [
+      "AuthServiceApi6F145F59",
+      "RootResourceId"
+     ]
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/OPTIONS/Resource"
+   }
+  },
+  "AuthServiceApiauth4F918273": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "AuthServiceApi6F145F59",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "auth",
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/Resource"
+   }
+  },
+  "AuthServiceApiauthOPTIONSB7D5DB23": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AuthServiceApiauth4F918273"
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/OPTIONS/Resource"
+   }
+  },
+  "AuthServiceApiauthsignup2FA1E77F": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AuthServiceApiauth4F918273"
+    },
+    "PathPart": "signup",
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signup/Resource"
+   }
+  },
+  "AuthServiceApiauthsignupOPTIONSB3E2B959": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AuthServiceApiauthsignup2FA1E77F"
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signup/OPTIONS/Resource"
+   }
+  },
+  "AuthServiceApiauthsignupPOSTApiPermissionAuthStackAuthServiceApiA63C1998POSTauthsignup61E05C10": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthServiceApiSignupFn42E54DA2",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AuthServiceApi6F145F59"
+       },
+       "/",
+       {
+        "Ref": "AuthServiceApiDeploymentStageprodEA127565"
+       },
+       "/POST/auth/signup"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signup/POST/ApiPermission.AuthStackAuthServiceApiA63C1998.POST..auth.signup"
+   }
+  },
+  "AuthServiceApiauthsignupPOSTApiPermissionTestAuthStackAuthServiceApiA63C1998POSTauthsignup6176A1B4": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthServiceApiSignupFn42E54DA2",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AuthServiceApi6F145F59"
+       },
+       "/test-invoke-stage/POST/auth/signup"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signup/POST/ApiPermission.Test.AuthStackAuthServiceApiA63C1998.POST..auth.signup"
+   }
+  },
+  "AuthServiceApiauthsignupPOST07EFAAC5": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AuthServiceApiSignupFn42E54DA2",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AuthServiceApiauthsignup2FA1E77F"
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signup/POST/Resource"
+   }
+  },
+  "AuthServiceApiauthconfirmsignup53051378": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AuthServiceApiauth4F918273"
+    },
+    "PathPart": "confirm_signup",
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/confirm_signup/Resource"
+   }
+  },
+  "AuthServiceApiauthconfirmsignupOPTIONSF4E3A721": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AuthServiceApiauthconfirmsignup53051378"
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/confirm_signup/OPTIONS/Resource"
+   }
+  },
+  "AuthServiceApiauthconfirmsignupPOSTApiPermissionAuthStackAuthServiceApiA63C1998POSTauthconfirmsignupD122F897": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthServiceApiConfirmFn0A585E3D",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AuthServiceApi6F145F59"
+       },
+       "/",
+       {
+        "Ref": "AuthServiceApiDeploymentStageprodEA127565"
+       },
+       "/POST/auth/confirm_signup"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/confirm_signup/POST/ApiPermission.AuthStackAuthServiceApiA63C1998.POST..auth.confirm_signup"
+   }
+  },
+  "AuthServiceApiauthconfirmsignupPOSTApiPermissionTestAuthStackAuthServiceApiA63C1998POSTauthconfirmsignup3C300680": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthServiceApiConfirmFn0A585E3D",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AuthServiceApi6F145F59"
+       },
+       "/test-invoke-stage/POST/auth/confirm_signup"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/confirm_signup/POST/ApiPermission.Test.AuthStackAuthServiceApiA63C1998.POST..auth.confirm_signup"
+   }
+  },
+  "AuthServiceApiauthconfirmsignupPOSTBF26C81A": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AuthServiceApiConfirmFn0A585E3D",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AuthServiceApiauthconfirmsignup53051378"
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/confirm_signup/POST/Resource"
+   }
+  },
+  "AuthServiceApiauthsignout9DEA4640": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AuthServiceApiauth4F918273"
+    },
+    "PathPart": "signout",
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signout/Resource"
+   }
+  },
+  "AuthServiceApiauthsignoutOPTIONSCB5E990F": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AuthServiceApiauthsignout9DEA4640"
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signout/OPTIONS/Resource"
+   }
+  },
+  "AuthServiceApiauthsignoutGETApiPermissionAuthStackAuthServiceApiA63C1998GETauthsignout49197821": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthServiceApiSignoutFn0B9011EB",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AuthServiceApi6F145F59"
+       },
+       "/",
+       {
+        "Ref": "AuthServiceApiDeploymentStageprodEA127565"
+       },
+       "/GET/auth/signout"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signout/GET/ApiPermission.AuthStackAuthServiceApiA63C1998.GET..auth.signout"
+   }
+  },
+  "AuthServiceApiauthsignoutGETApiPermissionTestAuthStackAuthServiceApiA63C1998GETauthsignoutC61E959C": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthServiceApiSignoutFn0B9011EB",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AuthServiceApi6F145F59"
+       },
+       "/test-invoke-stage/GET/auth/signout"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signout/GET/ApiPermission.Test.AuthStackAuthServiceApiA63C1998.GET..auth.signout"
+   }
+  },
+  "AuthServiceApiauthsignoutGETC75DA49A": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AuthServiceApiSignoutFn0B9011EB",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AuthServiceApiauthsignout9DEA4640"
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signout/GET/Resource"
+   }
+  },
+  "AuthServiceApiauthsigninAC698811": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AuthServiceApiauth4F918273"
+    },
+    "PathPart": "signin",
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signin/Resource"
+   }
+  },
+  "AuthServiceApiauthsigninOPTIONS4CCAC799": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AuthServiceApiauthsigninAC698811"
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signin/OPTIONS/Resource"
+   }
+  },
+  "AuthServiceApiauthsigninPOSTApiPermissionAuthStackAuthServiceApiA63C1998POSTauthsigninF383BE6D": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthServiceApiSigninFnD683380D",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AuthServiceApi6F145F59"
+       },
+       "/",
+       {
+        "Ref": "AuthServiceApiDeploymentStageprodEA127565"
+       },
+       "/POST/auth/signin"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signin/POST/ApiPermission.AuthStackAuthServiceApiA63C1998.POST..auth.signin"
+   }
+  },
+  "AuthServiceApiauthsigninPOSTApiPermissionTestAuthStackAuthServiceApiA63C1998POSTauthsigninE748E5F2": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthServiceApiSigninFnD683380D",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AuthServiceApi6F145F59"
+       },
+       "/test-invoke-stage/POST/auth/signin"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signin/POST/ApiPermission.Test.AuthStackAuthServiceApiA63C1998.POST..auth.signin"
+   }
+  },
+  "AuthServiceApiauthsigninPOSTC78F9AEC": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AuthServiceApiSigninFnD683380D",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AuthServiceApiauthsigninAC698811"
+    },
+    "RestApiId": {
+     "Ref": "AuthServiceApi6F145F59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signin/POST/Resource"
+   }
+  },
+  "AuthServiceApiSignupFnServiceRole449F516A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/SignupFn/ServiceRole/Resource"
+   }
+  },
+  "AuthServiceApiSignupFn42E54DA2": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "arm64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "530a6242c1c9fa395b07b55e42d6f290891d97e8dfdaaddd5b5987ea6d5d396b.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "USER_POOL_ID": {
+       "Ref": "UserPool6BA7E5F2"
+      },
+      "CLIENT_ID": {
+       "Ref": "UserPoolAppClientDD0407EC"
+      },
+      "REGION": {
+       "Ref": "AWS::Region"
+      },
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 128,
+    "Role": {
+     "Fn::GetAtt": [
+      "AuthServiceApiSignupFnServiceRole449F516A",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs16.x",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "AuthServiceApiSignupFnServiceRole449F516A"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/SignupFn/Resource",
+    "aws:asset:path": "/Users/diarmuidoconnor/repos/disSys-module/cognito",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AuthServiceApiConfirmFnServiceRole2967189E": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/ConfirmFn/ServiceRole/Resource"
+   }
+  },
+  "AuthServiceApiConfirmFn0A585E3D": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "arm64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "3ca6f9ee4b1fda271eab743959a08f67cb116807741ad82884dbc104b3bd55ae.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "USER_POOL_ID": {
+       "Ref": "UserPool6BA7E5F2"
+      },
+      "CLIENT_ID": {
+       "Ref": "UserPoolAppClientDD0407EC"
+      },
+      "REGION": {
+       "Ref": "AWS::Region"
+      },
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 128,
+    "Role": {
+     "Fn::GetAtt": [
+      "AuthServiceApiConfirmFnServiceRole2967189E",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs16.x",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "AuthServiceApiConfirmFnServiceRole2967189E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/ConfirmFn/Resource",
+    "aws:asset:path": "/Users/diarmuidoconnor/repos/disSys-module/cognito",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AuthServiceApiSignoutFnServiceRole47081A24": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/SignoutFn/ServiceRole/Resource"
+   }
+  },
+  "AuthServiceApiSignoutFn0B9011EB": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "arm64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "b2092d0da90974a6f84637702015d7050eb7492a15c3e5db08dfeaf9a61093a3.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "USER_POOL_ID": {
+       "Ref": "UserPool6BA7E5F2"
+      },
+      "CLIENT_ID": {
+       "Ref": "UserPoolAppClientDD0407EC"
+      },
+      "REGION": {
+       "Ref": "AWS::Region"
+      },
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 128,
+    "Role": {
+     "Fn::GetAtt": [
+      "AuthServiceApiSignoutFnServiceRole47081A24",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs16.x",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "AuthServiceApiSignoutFnServiceRole47081A24"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/SignoutFn/Resource",
+    "aws:asset:path": "/Users/diarmuidoconnor/repos/disSys-module/cognito",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AuthServiceApiSigninFnServiceRole63D70D3D": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/SigninFn/ServiceRole/Resource"
+   }
+  },
+  "AuthServiceApiSigninFnD683380D": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "arm64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "1b35adbcc93bce2acbaa0ab70d80d64eff64c4f15ce5646fea5754eb2fab62a3.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "USER_POOL_ID": {
+       "Ref": "UserPool6BA7E5F2"
+      },
+      "CLIENT_ID": {
+       "Ref": "UserPoolAppClientDD0407EC"
+      },
+      "REGION": {
+       "Ref": "AWS::Region"
+      },
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 128,
+    "Role": {
+     "Fn::GetAtt": [
+      "AuthServiceApiSigninFnServiceRole63D70D3D",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs16.x",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "AuthServiceApiSigninFnServiceRole63D70D3D"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AuthServiceApi/SigninFn/Resource",
+    "aws:asset:path": "/Users/diarmuidoconnor/repos/disSys-module/cognito",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AppApi5A410213": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Description": "App RestApi",
+    "EndpointConfiguration": {
+     "Types": [
+      "REGIONAL"
+     ]
+    },
+    "Name": "AppApi"
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Resource"
+   }
+  },
+  "AppApiDeployment1AA4962B880a116fa1fed24d18c77f8ecc4c12ff": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "Description": "App RestApi",
+    "RestApiId": {
+     "Ref": "AppApi5A410213"
+    }
+   },
+   "DependsOn": [
+    "AppApiOPTIONS2E090040",
+    "AppApiprotectedGET6CC5EF50",
+    "AppApiprotectedOPTIONS282E97EC",
+    "AppApiprotected4C6ED9DA",
+    "AppApipublicGETA3D3D0B9",
+    "AppApipublicOPTIONS9FEBD373",
+    "AppApipublic9250EB02"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Deployment/Resource"
+   }
+  },
+  "AppApiDeploymentStageprod13EA9041": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "DeploymentId": {
+     "Ref": "AppApiDeployment1AA4962B880a116fa1fed24d18c77f8ecc4c12ff"
+    },
+    "RestApiId": {
+     "Ref": "AppApi5A410213"
+    },
+    "StageName": "prod"
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/DeploymentStage.prod/Resource"
+   }
+  },
+  "AppApiOPTIONS2E090040": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Fn::GetAtt": [
+      "AppApi5A410213",
+      "RootResourceId"
+     ]
+    },
+    "RestApiId": {
+     "Ref": "AppApi5A410213"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Default/OPTIONS/Resource"
+   }
+  },
+  "AppApiprotected4C6ED9DA": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "AppApi5A410213",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "protected",
+    "RestApiId": {
+     "Ref": "AppApi5A410213"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Default/protected/Resource"
+   }
+  },
+  "AppApiprotectedOPTIONS282E97EC": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AppApiprotected4C6ED9DA"
+    },
+    "RestApiId": {
+     "Ref": "AppApi5A410213"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Default/protected/OPTIONS/Resource"
+   }
+  },
+  "AppApiprotectedGETApiPermissionAuthStackAppApiD7FE58D2GETprotected12EAC28F": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AppApiProtectedFn4A732886",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AppApi5A410213"
+       },
+       "/",
+       {
+        "Ref": "AppApiDeploymentStageprod13EA9041"
+       },
+       "/GET/protected"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Default/protected/GET/ApiPermission.AuthStackAppApiD7FE58D2.GET..protected"
+   }
+  },
+  "AppApiprotectedGETApiPermissionTestAuthStackAppApiD7FE58D2GETprotected223DBD70": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AppApiProtectedFn4A732886",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AppApi5A410213"
+       },
+       "/test-invoke-stage/GET/protected"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Default/protected/GET/ApiPermission.Test.AuthStackAppApiD7FE58D2.GET..protected"
+   }
+  },
+  "AppApiprotectedGET6CC5EF50": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "AppApiRequestAuthorizer51611877"
+    },
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AppApiProtectedFn4A732886",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AppApiprotected4C6ED9DA"
+    },
+    "RestApiId": {
+     "Ref": "AppApi5A410213"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Default/protected/GET/Resource"
+   }
+  },
+  "AppApipublic9250EB02": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "AppApi5A410213",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "public",
+    "RestApiId": {
+     "Ref": "AppApi5A410213"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Default/public/Resource"
+   }
+  },
+  "AppApipublicOPTIONS9FEBD373": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AppApipublic9250EB02"
+    },
+    "RestApiId": {
+     "Ref": "AppApi5A410213"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Default/public/OPTIONS/Resource"
+   }
+  },
+  "AppApipublicGETApiPermissionAuthStackAppApiD7FE58D2GETpublic23914CAD": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AppApiPublicFn7940DA11",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AppApi5A410213"
+       },
+       "/",
+       {
+        "Ref": "AppApiDeploymentStageprod13EA9041"
+       },
+       "/GET/public"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Default/public/GET/ApiPermission.AuthStackAppApiD7FE58D2.GET..public"
+   }
+  },
+  "AppApipublicGETApiPermissionTestAuthStackAppApiD7FE58D2GETpublic0EEF0499": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AppApiPublicFn7940DA11",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AppApi5A410213"
+       },
+       "/test-invoke-stage/GET/public"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Default/public/GET/ApiPermission.Test.AuthStackAppApiD7FE58D2.GET..public"
+   }
+  },
+  "AppApipublicGETA3D3D0B9": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AppApiPublicFn7940DA11",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AppApipublic9250EB02"
+    },
+    "RestApiId": {
+     "Ref": "AppApi5A410213"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AppApi/Default/public/GET/Resource"
+   }
+  },
+  "AppApiProtectedFnServiceRole38E7C4A1": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/ProtectedFn/ServiceRole/Resource"
+   }
+  },
+  "AppApiProtectedFn4A732886": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "arm64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "13ac879b2987ceea0b865651dc34ab2f1f45443e5bb19047951f332530e67084.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "USER_POOL_ID": {
+       "Ref": "UserPool6BA7E5F2"
+      },
+      "CLIENT_ID": {
+       "Ref": "UserPoolAppClientDD0407EC"
+      },
+      "REGION": {
+       "Ref": "AWS::Region"
+      },
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 128,
+    "Role": {
+     "Fn::GetAtt": [
+      "AppApiProtectedFnServiceRole38E7C4A1",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs16.x",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "AppApiProtectedFnServiceRole38E7C4A1"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/ProtectedFn/Resource",
+    "aws:asset:path": "/Users/diarmuidoconnor/repos/disSys-module/cognito",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AppApiPublicFnServiceRoleE277AE3E": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/PublicFn/ServiceRole/Resource"
+   }
+  },
+  "AppApiPublicFn7940DA11": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "arm64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "ac553c1ce4eb3bb69e3973afe15ba96a2990dc0b568e8cb115c93e9f82bfd67f.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "USER_POOL_ID": {
+       "Ref": "UserPool6BA7E5F2"
+      },
+      "CLIENT_ID": {
+       "Ref": "UserPoolAppClientDD0407EC"
+      },
+      "REGION": {
+       "Ref": "AWS::Region"
+      },
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 128,
+    "Role": {
+     "Fn::GetAtt": [
+      "AppApiPublicFnServiceRoleE277AE3E",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs16.x",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "AppApiPublicFnServiceRoleE277AE3E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/PublicFn/Resource",
+    "aws:asset:path": "/Users/diarmuidoconnor/repos/disSys-module/cognito",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AppApiAuthorizerFnServiceRoleF9C6C263": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AuthorizerFn/ServiceRole/Resource"
+   }
+  },
+  "AppApiAuthorizerFn4DE9C672": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "arm64"
+    ],
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "1750f8d5d7a65b7dd8cefcae477f6b3711ca00bc2cf8d478d4dad3c5154fb293.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "USER_POOL_ID": {
+       "Ref": "UserPool6BA7E5F2"
+      },
+      "CLIENT_ID": {
+       "Ref": "UserPoolAppClientDD0407EC"
+      },
+      "REGION": {
+       "Ref": "AWS::Region"
+      },
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 128,
+    "Role": {
+     "Fn::GetAtt": [
+      "AppApiAuthorizerFnServiceRoleF9C6C263",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs16.x",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "AppApiAuthorizerFnServiceRoleF9C6C263"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AuthorizerFn/Resource",
+    "aws:asset:path": "/Users/diarmuidoconnor/repos/disSys-module/cognito",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AppApiAuthorizerFnAuthStackAppApiRequestAuthorizer210434B6Permissions8C4C3432": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AppApiAuthorizerFn4DE9C672",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AppApi5A410213"
+       },
+       "/authorizers/",
+       {
+        "Ref": "AppApiRequestAuthorizer51611877"
+       }
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/AuthorizerFn/AuthStackAppApiRequestAuthorizer210434B6:Permissions"
+   }
+  },
+  "AppApiRequestAuthorizer51611877": {
+   "Type": "AWS::ApiGateway::Authorizer",
+   "Properties": {
+    "AuthorizerResultTtlInSeconds": 0,
+    "AuthorizerUri": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           ":",
+           {
+            "Fn::GetAtt": [
+             "AppApiAuthorizerFn4DE9C672",
+             "Arn"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       ":apigateway:",
+       {
+        "Fn::Select": [
+         3,
+         {
+          "Fn::Split": [
+           ":",
+           {
+            "Fn::GetAtt": [
+             "AppApiAuthorizerFn4DE9C672",
+             "Arn"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       ":lambda:path/2015-03-31/functions/",
+       {
+        "Fn::GetAtt": [
+         "AppApiAuthorizerFn4DE9C672",
+         "Arn"
+        ]
+       },
+       "/invocations"
+      ]
+     ]
+    },
+    "IdentitySource": "method.request.header.cookie",
+    "Name": "AuthStackAppApiRequestAuthorizer210434B6",
+    "RestApiId": {
+     "Ref": "AppApi5A410213"
+    },
+    "Type": "REQUEST"
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/AppApi/RequestAuthorizer/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VRQU7DMBB8C3d3ofSSaxvErVAFcY5cZwmbOHbI2lQlyt+x64SW08zOjL1j+RGyDB7u5IlXqmpXmo4wvjmpWhGkclS2NuQsjO+Mw8FaLfIP88cXkmtC426tpExC9lRLhyd5hrFAdtueYmyhT9hre+7mwzdTqFBj1BIJeesHhTvJKPboPm0VzZkt7nxz4gV++bjFh8hAPzhE9zpNQsvuWEkYg3zAoSNmsiaGnr1RLvAlUhpbYcPwcoHFFSS78Car09qAk+BNKZnRMWwjhBl2XrXoYu8p5l696727Nr7k4hvJ1P/qB55bU1EqEhtAw/ff6wzWm/BfDROtBm8cdQhFwl8Jtw3/ywEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "AuthStack/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Outputs": {
+  "AuthServiceApiEndpointBBC1D636": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "AuthServiceApi6F145F59"
+      },
+      ".execute-api.",
+      {
+       "Ref": "AWS::Region"
+      },
+      ".",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "AuthServiceApiDeploymentStageprodEA127565"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "AppApiEndpoint08C34808": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "AppApi5A410213"
+      },
+      ".execute-api.",
+      {
+       "Ref": "AWS::Region"
+      },
+      ".",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "AppApiDeploymentStageprod13EA9041"
+      },
+      "/"
+     ]
+    ]
+   }
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-2"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

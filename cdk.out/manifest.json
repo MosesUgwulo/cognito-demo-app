@@ -1,0 +1,124 @@
+{
+  "version": "32.0.0",
+  "artifacts": {
+    "AwsServerlessAuthStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "AwsServerlessAuthStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "AwsServerlessAuthStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "AwsServerlessAuthStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/556b47086c803350f7574eb4da1a53adbdc93cf48ed33132a1af92d730bb0210.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "AwsServerlessAuthStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "AwsServerlessAuthStack.assets"
+      ],
+      "metadata": {
+        "/AwsServerlessAuthStack/UserPool/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserPool6BA7E5F2"
+          }
+        ],
+        "/AwsServerlessAuthStack/UserPool/AppClient/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserPoolAppClientDD0407EC"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApi8CFB7A21"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiDeployment2EA5C028da36231678214e85c5ef64ba0b3ca3c6"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiDeploymentStageprodAE29D77D"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiEndpoint7E6B8279"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiOPTIONS9323A1DA"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthF0516E48"
+          }
+        ],
+        "/AwsServerlessAuthStack/AuthServiceApi/Default/auth/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceApiauthOPTIONS8DFC6C71"
+          }
+        ],
+        "/AwsServerlessAuthStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/AwsServerlessAuthStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/AwsServerlessAuthStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/AwsServerlessAuthStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "AwsServerlessAuthStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
