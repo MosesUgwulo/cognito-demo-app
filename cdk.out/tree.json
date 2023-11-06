@@ -171,7 +171,7 @@
                       "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                       "aws:cdk:cloudformation:props": {
                         "deploymentId": {
-                          "Ref": "AuthServiceApiDeployment2EA5C0289c74746854412ef5d6073772f29a9920"
+                          "Ref": "AuthServiceApiDeployment2EA5C0284d167b651b1a00a46da41e28d13f5631"
                         },
                         "restApiId": {
                           "Ref": "AuthServiceApi8CFB7A21"
@@ -587,6 +587,246 @@
                           "fqn": "aws-cdk-lib.aws_apigateway.Resource",
                           "version": "2.88.0"
                         }
+                      },
+                      "confirm_signup": {
+                        "id": "confirm_signup",
+                        "path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                              "aws:cdk:cloudformation:props": {
+                                "parentId": {
+                                  "Ref": "AuthServiceApiauthF0516E48"
+                                },
+                                "pathPart": "confirm_signup",
+                                "restApiId": {
+                                  "Ref": "AuthServiceApi8CFB7A21"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                              "version": "2.88.0"
+                            }
+                          },
+                          "OPTIONS": {
+                            "id": "OPTIONS",
+                            "path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup/OPTIONS",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup/OPTIONS/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                  "aws:cdk:cloudformation:props": {
+                                    "apiKeyRequired": false,
+                                    "authorizationType": "NONE",
+                                    "httpMethod": "OPTIONS",
+                                    "integration": {
+                                      "type": "MOCK",
+                                      "requestTemplates": {
+                                        "application/json": "{ statusCode: 200 }"
+                                      },
+                                      "integrationResponses": [
+                                        {
+                                          "statusCode": "204",
+                                          "responseParameters": {
+                                            "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                            "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                            "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "methodResponses": [
+                                      {
+                                        "statusCode": "204",
+                                        "responseParameters": {
+                                          "method.response.header.Access-Control-Allow-Headers": true,
+                                          "method.response.header.Access-Control-Allow-Origin": true,
+                                          "method.response.header.Access-Control-Allow-Methods": true
+                                        }
+                                      }
+                                    ],
+                                    "resourceId": {
+                                      "Ref": "AuthServiceApiauthconfirmsignup537C53E9"
+                                    },
+                                    "restApiId": {
+                                      "Ref": "AuthServiceApi8CFB7A21"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                  "version": "2.88.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                              "version": "2.88.0"
+                            }
+                          },
+                          "POST": {
+                            "id": "POST",
+                            "path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup/POST",
+                            "children": {
+                              "ApiPermission.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.confirm_signup": {
+                                "id": "ApiPermission.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.confirm_signup",
+                                "path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup/POST/ApiPermission.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.confirm_signup",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                  "aws:cdk:cloudformation:props": {
+                                    "action": "lambda:InvokeFunction",
+                                    "functionName": {
+                                      "Fn::GetAtt": [
+                                        "ConfirmFnA2DFB0E0",
+                                        "Arn"
+                                      ]
+                                    },
+                                    "principal": "apigateway.amazonaws.com",
+                                    "sourceArn": {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":execute-api:",
+                                          {
+                                            "Ref": "AWS::Region"
+                                          },
+                                          ":",
+                                          {
+                                            "Ref": "AWS::AccountId"
+                                          },
+                                          ":",
+                                          {
+                                            "Ref": "AuthServiceApi8CFB7A21"
+                                          },
+                                          "/",
+                                          {
+                                            "Ref": "AuthServiceApiDeploymentStageprodAE29D77D"
+                                          },
+                                          "/POST/auth/confirm_signup"
+                                        ]
+                                      ]
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                  "version": "2.88.0"
+                                }
+                              },
+                              "ApiPermission.Test.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.confirm_signup": {
+                                "id": "ApiPermission.Test.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.confirm_signup",
+                                "path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup/POST/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.confirm_signup",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                  "aws:cdk:cloudformation:props": {
+                                    "action": "lambda:InvokeFunction",
+                                    "functionName": {
+                                      "Fn::GetAtt": [
+                                        "ConfirmFnA2DFB0E0",
+                                        "Arn"
+                                      ]
+                                    },
+                                    "principal": "apigateway.amazonaws.com",
+                                    "sourceArn": {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":execute-api:",
+                                          {
+                                            "Ref": "AWS::Region"
+                                          },
+                                          ":",
+                                          {
+                                            "Ref": "AWS::AccountId"
+                                          },
+                                          ":",
+                                          {
+                                            "Ref": "AuthServiceApi8CFB7A21"
+                                          },
+                                          "/test-invoke-stage/POST/auth/confirm_signup"
+                                        ]
+                                      ]
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                  "version": "2.88.0"
+                                }
+                              },
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup/POST/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                  "aws:cdk:cloudformation:props": {
+                                    "authorizationType": "NONE",
+                                    "httpMethod": "POST",
+                                    "integration": {
+                                      "type": "AWS_PROXY",
+                                      "uri": {
+                                        "Fn::Join": [
+                                          "",
+                                          [
+                                            "arn:",
+                                            {
+                                              "Ref": "AWS::Partition"
+                                            },
+                                            ":apigateway:",
+                                            {
+                                              "Ref": "AWS::Region"
+                                            },
+                                            ":lambda:path/2015-03-31/functions/",
+                                            {
+                                              "Fn::GetAtt": [
+                                                "ConfirmFnA2DFB0E0",
+                                                "Arn"
+                                              ]
+                                            },
+                                            "/invocations"
+                                          ]
+                                        ]
+                                      },
+                                      "integrationHttpMethod": "POST"
+                                    },
+                                    "resourceId": {
+                                      "Ref": "AuthServiceApiauthconfirmsignup537C53E9"
+                                    },
+                                    "restApiId": {
+                                      "Ref": "AuthServiceApi8CFB7A21"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                  "version": "2.88.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                              "version": "2.88.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                          "version": "2.88.0"
+                        }
                       }
                     },
                     "constructInfo": {
@@ -727,6 +967,145 @@
                     "role": {
                       "Fn::GetAtt": [
                         "SignupFnServiceRoleB51FBFF1",
+                        "Arn"
+                      ]
+                    },
+                    "runtime": "nodejs16.x",
+                    "timeout": 10
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                  "version": "2.88.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
+              "version": "2.88.0"
+            }
+          },
+          "ConfirmFn": {
+            "id": "ConfirmFn",
+            "path": "AwsServerlessAuthStack/ConfirmFn",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "AwsServerlessAuthStack/ConfirmFn/ServiceRole",
+                "children": {
+                  "ImportServiceRole": {
+                    "id": "ImportServiceRole",
+                    "path": "AwsServerlessAuthStack/ConfirmFn/ServiceRole/ImportServiceRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.88.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "AwsServerlessAuthStack/ConfirmFn/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.88.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.88.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "AwsServerlessAuthStack/ConfirmFn/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "AwsServerlessAuthStack/ConfirmFn/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.88.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "AwsServerlessAuthStack/ConfirmFn/Code/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                      "version": "2.88.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                  "version": "2.88.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "AwsServerlessAuthStack/ConfirmFn/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "architectures": [
+                      "arm64"
+                    ],
+                    "code": {
+                      "s3Bucket": {
+                        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                      },
+                      "s3Key": "de11d1d66c1404b2ecdd7ad206fb2a201dce5062e132feca906d67852722d189.zip"
+                    },
+                    "environment": {
+                      "variables": {
+                        "USER_POOL_ID": {
+                          "Ref": "UserPool6BA7E5F2"
+                        },
+                        "CLIENT_ID": {
+                          "Ref": "UserPoolAppClientDD0407EC"
+                        },
+                        "REGION": {
+                          "Ref": "AWS::Region"
+                        },
+                        "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+                      }
+                    },
+                    "handler": "index.handler",
+                    "memorySize": 128,
+                    "role": {
+                      "Fn::GetAtt": [
+                        "ConfirmFnServiceRole1655CA55",
                         "Arn"
                       ]
                     },
