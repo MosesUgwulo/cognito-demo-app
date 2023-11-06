@@ -230,7 +230,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02Qyw6CQAxFv8X9ML42bBW3RoNxbcahYnlMCVMkhMy/ywgYVj2997ZpupNhKDcr1dpAJ3lQ4FP2N1Y6F4P06DWlBplkf7dQX4kKEb3Mn2eICgTDS2tUnFAVpoqhVZ3sY7B8qNDHZjxBVVBXTsOLbjghBa+NMOSpqTUclQVxBn5T4s2JZnfa/GPnfHdpuGp4qXuOyCTISMYJQwnIzK4/21Bu98MjMosY1I1hLEHGY/0C/Ckd7CQBAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02QTw+CMAzFP4v3McUTV8Wr0WA8mwkVy5+VsE5CyL67TMBw6q/vvTZN9zKK5G6jOhOkWRlU+JTDjVVailF6DCnlGpnkcDfQXokqEb/0nxeIKwTNa2tSnFAN5oqhU70cEjB8aNDHFjxBU1Ffz8OrbjwhB69NMObJtikclQFxBn5T5s2ZFnfe/GPnfHex3Fhe655j0hkyknZCUwayMNtPGMnQP6IwiEFrNWMNMpnqF2q8DmYkAQAA"
    },
    "Metadata": {
     "aws:cdk:path": "AwsServerlessAuthStack/CDKMetadata/Default"
