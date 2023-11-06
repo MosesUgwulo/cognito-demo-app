@@ -92,7 +92,7 @@
         }
       }
     },
-    "aafd5a9dae7596d6351fa10e4ac069f5259fc5525b7b14d4a01526f1daf1cdbe": {
+    "dedad7333a3d038ea8d0c0b49aaa1aa9ad89e368b0b0db7eb28a8cd47939ef46": {
       "source": {
         "path": "AwsServerlessAuthStack.template.json",
         "packaging": "file"
@@ -100,7 +100,7 @@
       "destinations": {
         "current_account-current_region": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
-          "objectKey": "aafd5a9dae7596d6351fa10e4ac069f5259fc5525b7b14d4a01526f1daf1cdbe.json",
+          "objectKey": "dedad7333a3d038ea8d0c0b49aaa1aa9ad89e368b0b0db7eb28a8cd47939ef46.json",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
         }
       }

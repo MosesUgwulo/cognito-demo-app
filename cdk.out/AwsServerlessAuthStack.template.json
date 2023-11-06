@@ -73,7 +73,7 @@
     "aws:cdk:path": "AwsServerlessAuthStack/UserPool/AppClient/Resource"
    }
   },
-  "AuthServiceApi8CFB7A21": {
+  "AuthServiceApi6F145F59": {
    "Type": "AWS::ApiGateway::RestApi",
    "Properties": {
     "Description": "Authentication Service RestApi",
@@ -85,54 +85,54 @@
     "Name": "AuthServiceApi"
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Resource"
    }
   },
-  "AuthServiceApiDeployment2EA5C0287cd9e64170020e3bf58a1cb2d1d42cc6": {
+  "AuthServiceApiDeploymentE6C7B14B0922265e8f5a284b086d1e56a1b05e2b": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "Authentication Service RestApi",
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "DependsOn": [
-    "AuthServiceApiauthconfirmsignupOPTIONS65756E9E",
-    "AuthServiceApiauthconfirmsignupPOST5F235FEF",
-    "AuthServiceApiauthconfirmsignup537C53E9",
-    "AuthServiceApiauthOPTIONS8DFC6C71",
-    "AuthServiceApiauthF0516E48",
-    "AuthServiceApiauthsigninOPTIONS2A0D0BC4",
-    "AuthServiceApiauthsigninPOST7E3E38A0",
-    "AuthServiceApiauthsignin17EA6462",
-    "AuthServiceApiauthsignoutGET2B2655CD",
-    "AuthServiceApiauthsignoutOPTIONSB792AD47",
-    "AuthServiceApiauthsignout137525BA",
-    "AuthServiceApiauthsignupOPTIONS8DCE3F66",
-    "AuthServiceApiauthsignupPOST1848032B",
-    "AuthServiceApiauthsignup28B7741A",
-    "AuthServiceApiOPTIONS9323A1DA"
+    "AuthServiceApiauthconfirmsignupOPTIONSF4E3A721",
+    "AuthServiceApiauthconfirmsignupPOSTBF26C81A",
+    "AuthServiceApiauthconfirmsignup53051378",
+    "AuthServiceApiauthOPTIONSB7D5DB23",
+    "AuthServiceApiauth4F918273",
+    "AuthServiceApiauthsigninOPTIONS4CCAC799",
+    "AuthServiceApiauthsigninPOSTC78F9AEC",
+    "AuthServiceApiauthsigninAC698811",
+    "AuthServiceApiauthsignoutGETC75DA49A",
+    "AuthServiceApiauthsignoutOPTIONSCB5E990F",
+    "AuthServiceApiauthsignout9DEA4640",
+    "AuthServiceApiauthsignupOPTIONSB3E2B959",
+    "AuthServiceApiauthsignupPOST07EFAAC5",
+    "AuthServiceApiauthsignup2FA1E77F",
+    "AuthServiceApiOPTIONSF87E2E8C"
    ],
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Deployment/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Deployment/Resource"
    }
   },
-  "AuthServiceApiDeploymentStageprodAE29D77D": {
+  "AuthServiceApiDeploymentStageprodEA127565": {
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "AuthServiceApiDeployment2EA5C0287cd9e64170020e3bf58a1cb2d1d42cc6"
+     "Ref": "AuthServiceApiDeploymentE6C7B14B0922265e8f5a284b086d1e56a1b05e2b"
     },
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     },
     "StageName": "prod"
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/DeploymentStage.prod/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/DeploymentStage.prod/Resource"
    }
   },
-  "AuthServiceApiOPTIONS9323A1DA": {
+  "AuthServiceApiOPTIONSF87E2E8C": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "ApiKeyRequired": false,
@@ -166,37 +166,37 @@
     ],
     "ResourceId": {
      "Fn::GetAtt": [
-      "AuthServiceApi8CFB7A21",
+      "AuthServiceApi6F145F59",
       "RootResourceId"
      ]
     },
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/OPTIONS/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/OPTIONS/Resource"
    }
   },
-  "AuthServiceApiauthF0516E48": {
+  "AuthServiceApiauth4F918273": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
      "Fn::GetAtt": [
-      "AuthServiceApi8CFB7A21",
+      "AuthServiceApi6F145F59",
       "RootResourceId"
      ]
     },
     "PathPart": "auth",
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/Resource"
    }
   },
-  "AuthServiceApiauthOPTIONS8DFC6C71": {
+  "AuthServiceApiauthOPTIONSB7D5DB23": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "ApiKeyRequired": false,
@@ -229,32 +229,32 @@
      }
     ],
     "ResourceId": {
-     "Ref": "AuthServiceApiauthF0516E48"
+     "Ref": "AuthServiceApiauth4F918273"
     },
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/OPTIONS/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/OPTIONS/Resource"
    }
   },
-  "AuthServiceApiauthsignup28B7741A": {
+  "AuthServiceApiauthsignup2FA1E77F": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
-     "Ref": "AuthServiceApiauthF0516E48"
+     "Ref": "AuthServiceApiauth4F918273"
     },
     "PathPart": "signup",
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signup/Resource"
    }
   },
-  "AuthServiceApiauthsignupOPTIONS8DCE3F66": {
+  "AuthServiceApiauthsignupOPTIONSB3E2B959": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "ApiKeyRequired": false,
@@ -287,23 +287,23 @@
      }
     ],
     "ResourceId": {
-     "Ref": "AuthServiceApiauthsignup28B7741A"
+     "Ref": "AuthServiceApiauthsignup2FA1E77F"
     },
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/OPTIONS/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signup/OPTIONS/Resource"
    }
   },
-  "AuthServiceApiauthsignupPOSTApiPermissionAwsServerlessAuthStackAuthServiceApi1E655247POSTauthsignup7EAA44C5": {
+  "AuthServiceApiauthsignupPOSTApiPermissionAwsServerlessAuthStackAuthServiceApiF30993DCPOSTauthsignup5F225DE0": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "SignupFn336C4F73",
+      "AuthServiceApiSignupFn42E54DA2",
       "Arn"
      ]
     },
@@ -326,11 +326,11 @@
        },
        ":",
        {
-        "Ref": "AuthServiceApi8CFB7A21"
+        "Ref": "AuthServiceApi6F145F59"
        },
        "/",
        {
-        "Ref": "AuthServiceApiDeploymentStageprodAE29D77D"
+        "Ref": "AuthServiceApiDeploymentStageprodEA127565"
        },
        "/POST/auth/signup"
       ]
@@ -338,16 +338,16 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/POST/ApiPermission.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.signup"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signup/POST/ApiPermission.AwsServerlessAuthStackAuthServiceApiF30993DC.POST..auth.signup"
    }
   },
-  "AuthServiceApiauthsignupPOSTApiPermissionTestAwsServerlessAuthStackAuthServiceApi1E655247POSTauthsignup9C336983": {
+  "AuthServiceApiauthsignupPOSTApiPermissionTestAwsServerlessAuthStackAuthServiceApiF30993DCPOSTauthsignupA685443C": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "SignupFn336C4F73",
+      "AuthServiceApiSignupFn42E54DA2",
       "Arn"
      ]
     },
@@ -370,7 +370,7 @@
        },
        ":",
        {
-        "Ref": "AuthServiceApi8CFB7A21"
+        "Ref": "AuthServiceApi6F145F59"
        },
        "/test-invoke-stage/POST/auth/signup"
       ]
@@ -378,10 +378,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/POST/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.signup"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signup/POST/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApiF30993DC.POST..auth.signup"
    }
   },
-  "AuthServiceApiauthsignupPOST1848032B": {
+  "AuthServiceApiauthsignupPOST07EFAAC5": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "NONE",
@@ -404,7 +404,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "SignupFn336C4F73",
+          "AuthServiceApiSignupFn42E54DA2",
           "Arn"
          ]
         },
@@ -414,32 +414,32 @@
      }
     },
     "ResourceId": {
-     "Ref": "AuthServiceApiauthsignup28B7741A"
+     "Ref": "AuthServiceApiauthsignup2FA1E77F"
     },
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signup/POST/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signup/POST/Resource"
    }
   },
-  "AuthServiceApiauthconfirmsignup537C53E9": {
+  "AuthServiceApiauthconfirmsignup53051378": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
-     "Ref": "AuthServiceApiauthF0516E48"
+     "Ref": "AuthServiceApiauth4F918273"
     },
     "PathPart": "confirm_signup",
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/confirm_signup/Resource"
    }
   },
-  "AuthServiceApiauthconfirmsignupOPTIONS65756E9E": {
+  "AuthServiceApiauthconfirmsignupOPTIONSF4E3A721": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "ApiKeyRequired": false,
@@ -472,23 +472,23 @@
      }
     ],
     "ResourceId": {
-     "Ref": "AuthServiceApiauthconfirmsignup537C53E9"
+     "Ref": "AuthServiceApiauthconfirmsignup53051378"
     },
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup/OPTIONS/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/confirm_signup/OPTIONS/Resource"
    }
   },
-  "AuthServiceApiauthconfirmsignupPOSTApiPermissionAwsServerlessAuthStackAuthServiceApi1E655247POSTauthconfirmsignup4D140923": {
+  "AuthServiceApiauthconfirmsignupPOSTApiPermissionAwsServerlessAuthStackAuthServiceApiF30993DCPOSTauthconfirmsignup3ABB6AF9": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ConfirmFnA2DFB0E0",
+      "AuthServiceApiConfirmFn0A585E3D",
       "Arn"
      ]
     },
@@ -511,11 +511,11 @@
        },
        ":",
        {
-        "Ref": "AuthServiceApi8CFB7A21"
+        "Ref": "AuthServiceApi6F145F59"
        },
        "/",
        {
-        "Ref": "AuthServiceApiDeploymentStageprodAE29D77D"
+        "Ref": "AuthServiceApiDeploymentStageprodEA127565"
        },
        "/POST/auth/confirm_signup"
       ]
@@ -523,16 +523,16 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup/POST/ApiPermission.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.confirm_signup"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/confirm_signup/POST/ApiPermission.AwsServerlessAuthStackAuthServiceApiF30993DC.POST..auth.confirm_signup"
    }
   },
-  "AuthServiceApiauthconfirmsignupPOSTApiPermissionTestAwsServerlessAuthStackAuthServiceApi1E655247POSTauthconfirmsignup95491442": {
+  "AuthServiceApiauthconfirmsignupPOSTApiPermissionTestAwsServerlessAuthStackAuthServiceApiF30993DCPOSTauthconfirmsignup5236D841": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ConfirmFnA2DFB0E0",
+      "AuthServiceApiConfirmFn0A585E3D",
       "Arn"
      ]
     },
@@ -555,7 +555,7 @@
        },
        ":",
        {
-        "Ref": "AuthServiceApi8CFB7A21"
+        "Ref": "AuthServiceApi6F145F59"
        },
        "/test-invoke-stage/POST/auth/confirm_signup"
       ]
@@ -563,10 +563,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup/POST/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.confirm_signup"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/confirm_signup/POST/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApiF30993DC.POST..auth.confirm_signup"
    }
   },
-  "AuthServiceApiauthconfirmsignupPOST5F235FEF": {
+  "AuthServiceApiauthconfirmsignupPOSTBF26C81A": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "NONE",
@@ -589,7 +589,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "ConfirmFnA2DFB0E0",
+          "AuthServiceApiConfirmFn0A585E3D",
           "Arn"
          ]
         },
@@ -599,32 +599,32 @@
      }
     },
     "ResourceId": {
-     "Ref": "AuthServiceApiauthconfirmsignup537C53E9"
+     "Ref": "AuthServiceApiauthconfirmsignup53051378"
     },
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/confirm_signup/POST/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/confirm_signup/POST/Resource"
    }
   },
-  "AuthServiceApiauthsignout137525BA": {
+  "AuthServiceApiauthsignout9DEA4640": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
-     "Ref": "AuthServiceApiauthF0516E48"
+     "Ref": "AuthServiceApiauth4F918273"
     },
     "PathPart": "signout",
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signout/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signout/Resource"
    }
   },
-  "AuthServiceApiauthsignoutOPTIONSB792AD47": {
+  "AuthServiceApiauthsignoutOPTIONSCB5E990F": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "ApiKeyRequired": false,
@@ -657,23 +657,23 @@
      }
     ],
     "ResourceId": {
-     "Ref": "AuthServiceApiauthsignout137525BA"
+     "Ref": "AuthServiceApiauthsignout9DEA4640"
     },
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signout/OPTIONS/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signout/OPTIONS/Resource"
    }
   },
-  "AuthServiceApiauthsignoutGETApiPermissionAwsServerlessAuthStackAuthServiceApi1E655247GETauthsignout935DF7E3": {
+  "AuthServiceApiauthsignoutGETApiPermissionAwsServerlessAuthStackAuthServiceApiF30993DCGETauthsignout03EAB167": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "SignoutFnEA9B2CE3",
+      "AuthServiceApiSignoutFn0B9011EB",
       "Arn"
      ]
     },
@@ -696,11 +696,11 @@
        },
        ":",
        {
-        "Ref": "AuthServiceApi8CFB7A21"
+        "Ref": "AuthServiceApi6F145F59"
        },
        "/",
        {
-        "Ref": "AuthServiceApiDeploymentStageprodAE29D77D"
+        "Ref": "AuthServiceApiDeploymentStageprodEA127565"
        },
        "/GET/auth/signout"
       ]
@@ -708,16 +708,16 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signout/GET/ApiPermission.AwsServerlessAuthStackAuthServiceApi1E655247.GET..auth.signout"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signout/GET/ApiPermission.AwsServerlessAuthStackAuthServiceApiF30993DC.GET..auth.signout"
    }
   },
-  "AuthServiceApiauthsignoutGETApiPermissionTestAwsServerlessAuthStackAuthServiceApi1E655247GETauthsignoutBD8BB1B9": {
+  "AuthServiceApiauthsignoutGETApiPermissionTestAwsServerlessAuthStackAuthServiceApiF30993DCGETauthsignout4C972FF7": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "SignoutFnEA9B2CE3",
+      "AuthServiceApiSignoutFn0B9011EB",
       "Arn"
      ]
     },
@@ -740,7 +740,7 @@
        },
        ":",
        {
-        "Ref": "AuthServiceApi8CFB7A21"
+        "Ref": "AuthServiceApi6F145F59"
        },
        "/test-invoke-stage/GET/auth/signout"
       ]
@@ -748,10 +748,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signout/GET/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApi1E655247.GET..auth.signout"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signout/GET/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApiF30993DC.GET..auth.signout"
    }
   },
-  "AuthServiceApiauthsignoutGET2B2655CD": {
+  "AuthServiceApiauthsignoutGETC75DA49A": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "NONE",
@@ -774,7 +774,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "SignoutFnEA9B2CE3",
+          "AuthServiceApiSignoutFn0B9011EB",
           "Arn"
          ]
         },
@@ -784,32 +784,32 @@
      }
     },
     "ResourceId": {
-     "Ref": "AuthServiceApiauthsignout137525BA"
+     "Ref": "AuthServiceApiauthsignout9DEA4640"
     },
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signout/GET/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signout/GET/Resource"
    }
   },
-  "AuthServiceApiauthsignin17EA6462": {
+  "AuthServiceApiauthsigninAC698811": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
-     "Ref": "AuthServiceApiauthF0516E48"
+     "Ref": "AuthServiceApiauth4F918273"
     },
     "PathPart": "signin",
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signin/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signin/Resource"
    }
   },
-  "AuthServiceApiauthsigninOPTIONS2A0D0BC4": {
+  "AuthServiceApiauthsigninOPTIONS4CCAC799": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "ApiKeyRequired": false,
@@ -842,23 +842,23 @@
      }
     ],
     "ResourceId": {
-     "Ref": "AuthServiceApiauthsignin17EA6462"
+     "Ref": "AuthServiceApiauthsigninAC698811"
     },
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signin/OPTIONS/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signin/OPTIONS/Resource"
    }
   },
-  "AuthServiceApiauthsigninPOSTApiPermissionAwsServerlessAuthStackAuthServiceApi1E655247POSTauthsignin532A1B11": {
+  "AuthServiceApiauthsigninPOSTApiPermissionAwsServerlessAuthStackAuthServiceApiF30993DCPOSTauthsignin44DFC3BF": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "SigninFnBC3BA31F",
+      "AuthServiceApiSigninFnD683380D",
       "Arn"
      ]
     },
@@ -881,11 +881,11 @@
        },
        ":",
        {
-        "Ref": "AuthServiceApi8CFB7A21"
+        "Ref": "AuthServiceApi6F145F59"
        },
        "/",
        {
-        "Ref": "AuthServiceApiDeploymentStageprodAE29D77D"
+        "Ref": "AuthServiceApiDeploymentStageprodEA127565"
        },
        "/POST/auth/signin"
       ]
@@ -893,16 +893,16 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signin/POST/ApiPermission.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.signin"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signin/POST/ApiPermission.AwsServerlessAuthStackAuthServiceApiF30993DC.POST..auth.signin"
    }
   },
-  "AuthServiceApiauthsigninPOSTApiPermissionTestAwsServerlessAuthStackAuthServiceApi1E655247POSTauthsigninC0A0FC36": {
+  "AuthServiceApiauthsigninPOSTApiPermissionTestAwsServerlessAuthStackAuthServiceApiF30993DCPOSTauthsigninF5A23211": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "SigninFnBC3BA31F",
+      "AuthServiceApiSigninFnD683380D",
       "Arn"
      ]
     },
@@ -925,7 +925,7 @@
        },
        ":",
        {
-        "Ref": "AuthServiceApi8CFB7A21"
+        "Ref": "AuthServiceApi6F145F59"
        },
        "/test-invoke-stage/POST/auth/signin"
       ]
@@ -933,10 +933,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signin/POST/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApi1E655247.POST..auth.signin"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signin/POST/ApiPermission.Test.AwsServerlessAuthStackAuthServiceApiF30993DC.POST..auth.signin"
    }
   },
-  "AuthServiceApiauthsigninPOST7E3E38A0": {
+  "AuthServiceApiauthsigninPOSTC78F9AEC": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "NONE",
@@ -959,7 +959,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "SigninFnBC3BA31F",
+          "AuthServiceApiSigninFnD683380D",
           "Arn"
          ]
         },
@@ -969,17 +969,17 @@
      }
     },
     "ResourceId": {
-     "Ref": "AuthServiceApiauthsignin17EA6462"
+     "Ref": "AuthServiceApiauthsigninAC698811"
     },
     "RestApiId": {
-     "Ref": "AuthServiceApi8CFB7A21"
+     "Ref": "AuthServiceApi6F145F59"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/Default/auth/signin/POST/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/AuthServiceApi/Default/auth/signin/POST/Resource"
    }
   },
-  "SignupFnServiceRoleB51FBFF1": {
+  "AuthServiceApiSignupFnServiceRole449F516A": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -1010,10 +1010,10 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/SignupFn/ServiceRole/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/SignupFn/ServiceRole/Resource"
    }
   },
-  "SignupFn336C4F73": {
+  "AuthServiceApiSignupFn42E54DA2": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Architectures": [
@@ -1043,7 +1043,7 @@
     "MemorySize": 128,
     "Role": {
      "Fn::GetAtt": [
-      "SignupFnServiceRoleB51FBFF1",
+      "AuthServiceApiSignupFnServiceRole449F516A",
       "Arn"
      ]
     },
@@ -1051,16 +1051,16 @@
     "Timeout": 10
    },
    "DependsOn": [
-    "SignupFnServiceRoleB51FBFF1"
+    "AuthServiceApiSignupFnServiceRole449F516A"
    ],
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/SignupFn/Resource",
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/SignupFn/Resource",
     "aws:asset:path": "asset.bda58344c4be036bfc04193f99485940f45d8a5c33e816ab712b46e69b9f2ac4",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
   },
-  "ConfirmFnServiceRole1655CA55": {
+  "AuthServiceApiConfirmFnServiceRole2967189E": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -1091,10 +1091,10 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/ConfirmFn/ServiceRole/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/ConfirmFn/ServiceRole/Resource"
    }
   },
-  "ConfirmFnA2DFB0E0": {
+  "AuthServiceApiConfirmFn0A585E3D": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Architectures": [
@@ -1124,7 +1124,7 @@
     "MemorySize": 128,
     "Role": {
      "Fn::GetAtt": [
-      "ConfirmFnServiceRole1655CA55",
+      "AuthServiceApiConfirmFnServiceRole2967189E",
       "Arn"
      ]
     },
@@ -1132,16 +1132,16 @@
     "Timeout": 10
    },
    "DependsOn": [
-    "ConfirmFnServiceRole1655CA55"
+    "AuthServiceApiConfirmFnServiceRole2967189E"
    ],
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/ConfirmFn/Resource",
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/ConfirmFn/Resource",
     "aws:asset:path": "asset.de11d1d66c1404b2ecdd7ad206fb2a201dce5062e132feca906d67852722d189",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
   },
-  "SignoutFnServiceRole3AF7B732": {
+  "AuthServiceApiSignoutFnServiceRole47081A24": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -1172,10 +1172,10 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/SignoutFn/ServiceRole/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/SignoutFn/ServiceRole/Resource"
    }
   },
-  "SignoutFnEA9B2CE3": {
+  "AuthServiceApiSignoutFn0B9011EB": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Architectures": [
@@ -1205,7 +1205,7 @@
     "MemorySize": 128,
     "Role": {
      "Fn::GetAtt": [
-      "SignoutFnServiceRole3AF7B732",
+      "AuthServiceApiSignoutFnServiceRole47081A24",
       "Arn"
      ]
     },
@@ -1213,16 +1213,16 @@
     "Timeout": 10
    },
    "DependsOn": [
-    "SignoutFnServiceRole3AF7B732"
+    "AuthServiceApiSignoutFnServiceRole47081A24"
    ],
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/SignoutFn/Resource",
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/SignoutFn/Resource",
     "aws:asset:path": "asset.5d9515a87ad00748838adf9864c3d06aae1cd24b53836573de4de94d16500711",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
   },
-  "SigninFnServiceRole084C9885": {
+  "AuthServiceApiSigninFnServiceRole63D70D3D": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -1253,10 +1253,10 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/SigninFn/ServiceRole/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/SigninFn/ServiceRole/Resource"
    }
   },
-  "SigninFnBC3BA31F": {
+  "AuthServiceApiSigninFnD683380D": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Architectures": [
@@ -1286,7 +1286,7 @@
     "MemorySize": 128,
     "Role": {
      "Fn::GetAtt": [
-      "SigninFnServiceRole084C9885",
+      "AuthServiceApiSigninFnServiceRole63D70D3D",
       "Arn"
      ]
     },
@@ -1294,16 +1294,16 @@
     "Timeout": 10
    },
    "DependsOn": [
-    "SigninFnServiceRole084C9885"
+    "AuthServiceApiSigninFnServiceRole63D70D3D"
    ],
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/SigninFn/Resource",
+    "aws:cdk:path": "AwsServerlessAuthStack/AuthServiceApi/SigninFn/Resource",
     "aws:asset:path": "asset.f3cd1f462594464f1356b581cea4471c5d169260936727a3f66c45df888b42ae",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
   },
-  "AppApiE7BADA01": {
+  "AppApi5A410213": {
    "Type": "AWS::ApiGateway::RestApi",
    "Properties": {
     "Description": "App RestApi",
@@ -1315,46 +1315,46 @@
     "Name": "AppApi"
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Resource"
    }
   },
-  "AppApiDeployment7658F313f3bbf1263d818c3073afa28dbcb1b48d": {
+  "AppApiDeployment1AA4962B01cbc735b4c37908c56aa07750b58870": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "App RestApi",
     "RestApiId": {
-     "Ref": "AppApiE7BADA01"
+     "Ref": "AppApi5A410213"
     }
    },
    "DependsOn": [
-    "AppApiOPTIONS26B60D0C",
-    "AppApiprotectedGET82227590",
-    "AppApiprotectedOPTIONSBBC5239D",
-    "AppApiprotected326364E3",
-    "AppApipublicGET4A8586C5",
-    "AppApipublicOPTIONSA946398B",
-    "AppApipublicED08BA99"
+    "AppApiOPTIONS2E090040",
+    "AppApiprotectedGET6CC5EF50",
+    "AppApiprotectedOPTIONS282E97EC",
+    "AppApiprotected4C6ED9DA",
+    "AppApipublicGETA3D3D0B9",
+    "AppApipublicOPTIONS9FEBD373",
+    "AppApipublic9250EB02"
    ],
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Deployment/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Deployment/Resource"
    }
   },
-  "AppApiDeploymentStageprod4B09D08C": {
+  "AppApiDeploymentStageprod13EA9041": {
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "AppApiDeployment7658F313f3bbf1263d818c3073afa28dbcb1b48d"
+     "Ref": "AppApiDeployment1AA4962B01cbc735b4c37908c56aa07750b58870"
     },
     "RestApiId": {
-     "Ref": "AppApiE7BADA01"
+     "Ref": "AppApi5A410213"
     },
     "StageName": "prod"
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/DeploymentStage.prod/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/DeploymentStage.prod/Resource"
    }
   },
-  "AppApiOPTIONS26B60D0C": {
+  "AppApiOPTIONS2E090040": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "ApiKeyRequired": false,
@@ -1388,37 +1388,37 @@
     ],
     "ResourceId": {
      "Fn::GetAtt": [
-      "AppApiE7BADA01",
+      "AppApi5A410213",
       "RootResourceId"
      ]
     },
     "RestApiId": {
-     "Ref": "AppApiE7BADA01"
+     "Ref": "AppApi5A410213"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Default/OPTIONS/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Default/OPTIONS/Resource"
    }
   },
-  "AppApiprotected326364E3": {
+  "AppApiprotected4C6ED9DA": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
      "Fn::GetAtt": [
-      "AppApiE7BADA01",
+      "AppApi5A410213",
       "RootResourceId"
      ]
     },
     "PathPart": "protected",
     "RestApiId": {
-     "Ref": "AppApiE7BADA01"
+     "Ref": "AppApi5A410213"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Default/protected/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Default/protected/Resource"
    }
   },
-  "AppApiprotectedOPTIONSBBC5239D": {
+  "AppApiprotectedOPTIONS282E97EC": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "ApiKeyRequired": false,
@@ -1451,23 +1451,23 @@
      }
     ],
     "ResourceId": {
-     "Ref": "AppApiprotected326364E3"
+     "Ref": "AppApiprotected4C6ED9DA"
     },
     "RestApiId": {
-     "Ref": "AppApiE7BADA01"
+     "Ref": "AppApi5A410213"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Default/protected/OPTIONS/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Default/protected/OPTIONS/Resource"
    }
   },
-  "AppApiprotectedGETApiPermissionAwsServerlessAuthStackAppApi148C24F5GETprotectedEDC2E85B": {
+  "AppApiprotectedGETApiPermissionAwsServerlessAuthStackAppApi17F1FAFDGETprotectedF7928DCE": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ProtectedFn08517F55",
+      "AppApiProtectedFn4A732886",
       "Arn"
      ]
     },
@@ -1490,11 +1490,11 @@
        },
        ":",
        {
-        "Ref": "AppApiE7BADA01"
+        "Ref": "AppApi5A410213"
        },
        "/",
        {
-        "Ref": "AppApiDeploymentStageprod4B09D08C"
+        "Ref": "AppApiDeploymentStageprod13EA9041"
        },
        "/GET/protected"
       ]
@@ -1502,16 +1502,16 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Default/protected/GET/ApiPermission.AwsServerlessAuthStackAppApi148C24F5.GET..protected"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Default/protected/GET/ApiPermission.AwsServerlessAuthStackAppApi17F1FAFD.GET..protected"
    }
   },
-  "AppApiprotectedGETApiPermissionTestAwsServerlessAuthStackAppApi148C24F5GETprotected8C485F67": {
+  "AppApiprotectedGETApiPermissionTestAwsServerlessAuthStackAppApi17F1FAFDGETprotectedA305B779": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ProtectedFn08517F55",
+      "AppApiProtectedFn4A732886",
       "Arn"
      ]
     },
@@ -1534,7 +1534,7 @@
        },
        ":",
        {
-        "Ref": "AppApiE7BADA01"
+        "Ref": "AppApi5A410213"
        },
        "/test-invoke-stage/GET/protected"
       ]
@@ -1542,15 +1542,15 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Default/protected/GET/ApiPermission.Test.AwsServerlessAuthStackAppApi148C24F5.GET..protected"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Default/protected/GET/ApiPermission.Test.AwsServerlessAuthStackAppApi17F1FAFD.GET..protected"
    }
   },
-  "AppApiprotectedGET82227590": {
+  "AppApiprotectedGET6CC5EF50": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "CUSTOM",
     "AuthorizerId": {
-     "Ref": "RequestAuthorizer7473A0B3"
+     "Ref": "AppApiRequestAuthorizer51611877"
     },
     "HttpMethod": "GET",
     "Integration": {
@@ -1571,7 +1571,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "ProtectedFn08517F55",
+          "AppApiProtectedFn4A732886",
           "Arn"
          ]
         },
@@ -1581,35 +1581,35 @@
      }
     },
     "ResourceId": {
-     "Ref": "AppApiprotected326364E3"
+     "Ref": "AppApiprotected4C6ED9DA"
     },
     "RestApiId": {
-     "Ref": "AppApiE7BADA01"
+     "Ref": "AppApi5A410213"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Default/protected/GET/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Default/protected/GET/Resource"
    }
   },
-  "AppApipublicED08BA99": {
+  "AppApipublic9250EB02": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
      "Fn::GetAtt": [
-      "AppApiE7BADA01",
+      "AppApi5A410213",
       "RootResourceId"
      ]
     },
     "PathPart": "public",
     "RestApiId": {
-     "Ref": "AppApiE7BADA01"
+     "Ref": "AppApi5A410213"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Default/public/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Default/public/Resource"
    }
   },
-  "AppApipublicOPTIONSA946398B": {
+  "AppApipublicOPTIONS9FEBD373": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "ApiKeyRequired": false,
@@ -1642,23 +1642,23 @@
      }
     ],
     "ResourceId": {
-     "Ref": "AppApipublicED08BA99"
+     "Ref": "AppApipublic9250EB02"
     },
     "RestApiId": {
-     "Ref": "AppApiE7BADA01"
+     "Ref": "AppApi5A410213"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Default/public/OPTIONS/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Default/public/OPTIONS/Resource"
    }
   },
-  "AppApipublicGETApiPermissionAwsServerlessAuthStackAppApi148C24F5GETpublicC8BBB901": {
+  "AppApipublicGETApiPermissionAwsServerlessAuthStackAppApi17F1FAFDGETpublic69D991EC": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "PublicFn6A30F5E5",
+      "AppApiPublicFn7940DA11",
       "Arn"
      ]
     },
@@ -1681,11 +1681,11 @@
        },
        ":",
        {
-        "Ref": "AppApiE7BADA01"
+        "Ref": "AppApi5A410213"
        },
        "/",
        {
-        "Ref": "AppApiDeploymentStageprod4B09D08C"
+        "Ref": "AppApiDeploymentStageprod13EA9041"
        },
        "/GET/public"
       ]
@@ -1693,16 +1693,16 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Default/public/GET/ApiPermission.AwsServerlessAuthStackAppApi148C24F5.GET..public"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Default/public/GET/ApiPermission.AwsServerlessAuthStackAppApi17F1FAFD.GET..public"
    }
   },
-  "AppApipublicGETApiPermissionTestAwsServerlessAuthStackAppApi148C24F5GETpublic04789B46": {
+  "AppApipublicGETApiPermissionTestAwsServerlessAuthStackAppApi17F1FAFDGETpublic7173600E": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "PublicFn6A30F5E5",
+      "AppApiPublicFn7940DA11",
       "Arn"
      ]
     },
@@ -1725,7 +1725,7 @@
        },
        ":",
        {
-        "Ref": "AppApiE7BADA01"
+        "Ref": "AppApi5A410213"
        },
        "/test-invoke-stage/GET/public"
       ]
@@ -1733,10 +1733,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Default/public/GET/ApiPermission.Test.AwsServerlessAuthStackAppApi148C24F5.GET..public"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Default/public/GET/ApiPermission.Test.AwsServerlessAuthStackAppApi17F1FAFD.GET..public"
    }
   },
-  "AppApipublicGET4A8586C5": {
+  "AppApipublicGETA3D3D0B9": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "NONE",
@@ -1759,7 +1759,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "PublicFn6A30F5E5",
+          "AppApiPublicFn7940DA11",
           "Arn"
          ]
         },
@@ -1769,17 +1769,17 @@
      }
     },
     "ResourceId": {
-     "Ref": "AppApipublicED08BA99"
+     "Ref": "AppApipublic9250EB02"
     },
     "RestApiId": {
-     "Ref": "AppApiE7BADA01"
+     "Ref": "AppApi5A410213"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/Default/public/GET/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AppApi/Default/public/GET/Resource"
    }
   },
-  "ProtectedFnServiceRole25BFD54C": {
+  "AppApiProtectedFnServiceRole38E7C4A1": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -1810,10 +1810,10 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/ProtectedFn/ServiceRole/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/ProtectedFn/ServiceRole/Resource"
    }
   },
-  "ProtectedFn08517F55": {
+  "AppApiProtectedFn4A732886": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Architectures": [
@@ -1843,7 +1843,7 @@
     "MemorySize": 128,
     "Role": {
      "Fn::GetAtt": [
-      "ProtectedFnServiceRole25BFD54C",
+      "AppApiProtectedFnServiceRole38E7C4A1",
       "Arn"
      ]
     },
@@ -1851,16 +1851,16 @@
     "Timeout": 10
    },
    "DependsOn": [
-    "ProtectedFnServiceRole25BFD54C"
+    "AppApiProtectedFnServiceRole38E7C4A1"
    ],
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/ProtectedFn/Resource",
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/ProtectedFn/Resource",
     "aws:asset:path": "asset.c6b259c1b8e55a7f13b276d0d68fa0ef1b835d4a7d657fefe2a272723fd547a7",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
   },
-  "PublicFnServiceRoleF3FDF518": {
+  "AppApiPublicFnServiceRoleE277AE3E": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -1891,10 +1891,10 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/PublicFn/ServiceRole/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/PublicFn/ServiceRole/Resource"
    }
   },
-  "PublicFn6A30F5E5": {
+  "AppApiPublicFn7940DA11": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Architectures": [
@@ -1924,7 +1924,7 @@
     "MemorySize": 128,
     "Role": {
      "Fn::GetAtt": [
-      "PublicFnServiceRoleF3FDF518",
+      "AppApiPublicFnServiceRoleE277AE3E",
       "Arn"
      ]
     },
@@ -1932,16 +1932,16 @@
     "Timeout": 10
    },
    "DependsOn": [
-    "PublicFnServiceRoleF3FDF518"
+    "AppApiPublicFnServiceRoleE277AE3E"
    ],
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/PublicFn/Resource",
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/PublicFn/Resource",
     "aws:asset:path": "asset.34190b82f0c2c36b5cd4299846586c1687878ba06784c55b040f0c15b86a963d",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
   },
-  "AuthorizerFnServiceRole91AE9242": {
+  "AppApiAuthorizerFnServiceRoleF9C6C263": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -1972,10 +1972,10 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthorizerFn/ServiceRole/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AuthorizerFn/ServiceRole/Resource"
    }
   },
-  "AuthorizerFn97B9AA7C": {
+  "AppApiAuthorizerFn4DE9C672": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Architectures": [
@@ -2005,7 +2005,7 @@
     "MemorySize": 128,
     "Role": {
      "Fn::GetAtt": [
-      "AuthorizerFnServiceRole91AE9242",
+      "AppApiAuthorizerFnServiceRoleF9C6C263",
       "Arn"
      ]
     },
@@ -2013,22 +2013,22 @@
     "Timeout": 10
    },
    "DependsOn": [
-    "AuthorizerFnServiceRole91AE9242"
+    "AppApiAuthorizerFnServiceRoleF9C6C263"
    ],
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthorizerFn/Resource",
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AuthorizerFn/Resource",
     "aws:asset:path": "asset.cd2096f03f97fabe4e5f6a72c1cc10e00e5fef3368e9bfd6bfb25d8ea3c27ae1",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
   },
-  "AuthorizerFnAwsServerlessAuthStackRequestAuthorizerB75206C1PermissionsC8FB5DBF": {
+  "AppApiAuthorizerFnAwsServerlessAuthStackAppApiRequestAuthorizerF3E13C48Permissions31B1B3E3": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "AuthorizerFn97B9AA7C",
+      "AppApiAuthorizerFn4DE9C672",
       "Arn"
      ]
     },
@@ -2051,21 +2051,21 @@
        },
        ":",
        {
-        "Ref": "AppApiE7BADA01"
+        "Ref": "AppApi5A410213"
        },
        "/authorizers/",
        {
-        "Ref": "RequestAuthorizer7473A0B3"
+        "Ref": "AppApiRequestAuthorizer51611877"
        }
       ]
      ]
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/AuthorizerFn/AwsServerlessAuthStackRequestAuthorizerB75206C1:Permissions"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/AuthorizerFn/AwsServerlessAuthStackAppApiRequestAuthorizerF3E13C48:Permissions"
    }
   },
-  "RequestAuthorizer7473A0B3": {
+  "AppApiRequestAuthorizer51611877": {
    "Type": "AWS::ApiGateway::Authorizer",
    "Properties": {
     "AuthorizerResultTtlInSeconds": 0,
@@ -2082,7 +2082,7 @@
            ":",
            {
             "Fn::GetAtt": [
-             "AuthorizerFn97B9AA7C",
+             "AppApiAuthorizerFn4DE9C672",
              "Arn"
             ]
            }
@@ -2099,7 +2099,7 @@
            ":",
            {
             "Fn::GetAtt": [
-             "AuthorizerFn97B9AA7C",
+             "AppApiAuthorizerFn4DE9C672",
              "Arn"
             ]
            }
@@ -2110,7 +2110,7 @@
        ":lambda:path/2015-03-31/functions/",
        {
         "Fn::GetAtt": [
-         "AuthorizerFn97B9AA7C",
+         "AppApiAuthorizerFn4DE9C672",
          "Arn"
         ]
        },
@@ -2119,14 +2119,14 @@
      ]
     },
     "IdentitySource": "method.request.header.cookie",
-    "Name": "AwsServerlessAuthStackRequestAuthorizerB75206C1",
+    "Name": "AwsServerlessAuthStackAppApiRequestAuthorizerF3E13C48",
     "RestApiId": {
-     "Ref": "AppApiE7BADA01"
+     "Ref": "AppApi5A410213"
     },
     "Type": "REQUEST"
    },
    "Metadata": {
-    "aws:cdk:path": "AwsServerlessAuthStack/RequestAuthorizer/Resource"
+    "aws:cdk:path": "AwsServerlessAuthStack/AppApi/RequestAuthorizer/Resource"
    }
   },
   "CDKMetadata": {
@@ -2141,14 +2141,14 @@
   }
  },
  "Outputs": {
-  "AuthServiceApiEndpoint7E6B8279": {
+  "AuthServiceApiEndpointBBC1D636": {
    "Value": {
     "Fn::Join": [
      "",
      [
       "https://",
       {
-       "Ref": "AuthServiceApi8CFB7A21"
+       "Ref": "AuthServiceApi6F145F59"
       },
       ".execute-api.",
       {
@@ -2160,21 +2160,21 @@
       },
       "/",
       {
-       "Ref": "AuthServiceApiDeploymentStageprodAE29D77D"
+       "Ref": "AuthServiceApiDeploymentStageprodEA127565"
       },
       "/"
      ]
     ]
    }
   },
-  "AppApiEndpoint979256A8": {
+  "AppApiEndpoint08C34808": {
    "Value": {
     "Fn::Join": [
      "",
      [
       "https://",
       {
-       "Ref": "AppApiE7BADA01"
+       "Ref": "AppApi5A410213"
       },
       ".execute-api.",
       {
@@ -2186,7 +2186,7 @@
       },
       "/",
       {
-       "Ref": "AppApiDeploymentStageprod4B09D08C"
+       "Ref": "AppApiDeploymentStageprod13EA9041"
       },
       "/"
      ]
